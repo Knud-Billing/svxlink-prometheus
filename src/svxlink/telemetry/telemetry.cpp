@@ -6,6 +6,7 @@
 #include <prometheus/summary.h>
 
 #include <chrono>
+#include <iostream>
 
 
 using namespace std::chrono;
@@ -48,7 +49,7 @@ Telemetry::Telemetry()
     echolink_disconnect_counter = &echolink_counter->Add({{"transition", "disconnect"}});
 
     echolink_length = &BuildSummary()
-                   .Name("exholink_length_total")
+                   .Name("echolink_length_total")
                    .Help("Echolink active")
                    .Register(*registry);
     echolink_length_total = &echolink_length->Add({{"echolink", "length"}}, Summary::Quantiles());
@@ -113,7 +114,9 @@ void Telemetry::tx_on() {
 void Telemetry::tx_off() {
     milliseconds now = duration_cast< milliseconds >(system_clock::now().time_since_epoch());
     tx_off_counter->Increment();
-    tx_length_total->Observe((now.count() - tx_ms.count())/1000.0);
+    double time = (now.count() - tx_ms.count())/1000.0;
+    tx_length_total->Observe(time);
+    std::cout << "Tx was on for " << time << " seconds" << std::endl;
 }
 
 
@@ -148,7 +151,9 @@ void Telemetry::squelch_open() {
 void Telemetry::squelch_close() {
     milliseconds now = duration_cast< milliseconds >(system_clock::now().time_since_epoch());
     squelch_close_counter->Increment();
-    squelch_length_total->Observe((now.count() - squelch_ms.count())/1000.0);
+    double time = (now.count() - squelch_ms.count())/1000.0;
+    squelch_length_total->Observe(time);
+    std::cout << "Squelch was open for " << time << " seconds" << std::endl;
 }
 
 

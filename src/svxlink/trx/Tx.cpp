@@ -242,14 +242,16 @@ void Tx::setIsTransmitting(bool is_transmitting)
       cout << m_name << ": Turning the transmitter "
            << (is_transmitting ? "ON" : "OFF") << endl;
     }
-    m_is_transmitting = is_transmitting;
-    transmitterStateChange(is_transmitting);
 
     if (is_transmitting) {
       Telemetry::getInstance().tx_on();
     } else {
       Telemetry::getInstance().tx_off();
     }
+
+    m_is_transmitting = is_transmitting;
+    transmitterStateChange(is_transmitting);
+
 
     char tx_id = id();
     if (tx_id != '\0')
