@@ -29,29 +29,29 @@ Telemetry::Telemetry()
                         .Name("tx_total")
                         .Help("Number of transmissions")
                         .Register(*registry);
-    tx_on_counter = &tx_counter->Add({{"transition", "on"}});
-    tx_off_counter = &tx_counter->Add({{"transition", "off"}});
+    // tx_on_counter = &tx_counter->Add({{"transition", "on"}});
+    // tx_off_counter = &tx_counter->Add({{"transition", "off"}});
 
-    tx_length = &BuildSummary()
-                   .Name("tx_length_total")
-                   .Help("Transmitter active")
-                   .Register(*registry);
-    tx_length_total = &tx_length->Add({{"tx", "length"}}, Summary::Quantiles());
+    // tx_length = &BuildSummary()
+    //                .Name("tx_length_total")
+    //                .Help("Transmitter active")
+    //                .Register(*registry);
+    // tx_length_total = &tx_length->Add({{"tx", "length"}}, Summary::Quantiles());
 
 
 
-    echolink_counter = &BuildCounter()
-                        .Name("echolink_total")
-                        .Help("Number of Echolink connections")
-                        .Register(*registry);
-    echolink_connect_counter = &echolink_counter->Add({{"transition", "connect"}});
-    echolink_disconnect_counter = &echolink_counter->Add({{"transition", "disconnect"}});
+    // echolink_counter = &BuildCounter()
+    //                     .Name("echolink_total")
+    //                     .Help("Number of Echolink connections")
+    //                     .Register(*registry);
+    // echolink_connect_counter = &echolink_counter->Add({{"transition", "connect"}});
+    // echolink_disconnect_counter = &echolink_counter->Add({{"transition", "disconnect"}});
 
-    echolink_length = &BuildSummary()
-                   .Name("exholink_length_total")
-                   .Help("Echolink active")
-                   .Register(*registry);
-    echolink_length_total = &echolink_length->Add({{"echolink", "length"}}, Summary::Quantiles());
+    // echolink_length = &BuildSummary()
+    //                .Name("exholink_length_total")
+    //                .Help("Echolink active")
+    //                .Register(*registry);
+    // echolink_length_total = &echolink_length->Add({{"echolink", "length"}}, Summary::Quantiles());
 
 
 
@@ -69,18 +69,18 @@ Telemetry::Telemetry()
     // parrot_length_total = &parrot_length->Add({{"parrot", "length"}}, Summary::Quantiles());
 
 
-    qso_counter = &BuildCounter()
-                        .Name("qso_total")
-                        .Help("Number of QSOs")
-                        .Register(*registry);
-    qso_start_counter = &qso_counter->Add({{"qso", "start"}});
-    qso_stop_counter = &qso_counter->Add({{"qso", "stop"}});
+    // qso_counter = &BuildCounter()
+    //                     .Name("qso_total")
+    //                     .Help("Number of QSOs")
+    //                     .Register(*registry);
+    // qso_start_counter = &qso_counter->Add({{"qso", "start"}});
+    // qso_stop_counter = &qso_counter->Add({{"qso", "stop"}});
 
-    qso_length = &BuildSummary()
-                   .Name("qso_length_total")
-                   .Help("QSO length")
-                   .Register(*registry);
-    qso_length_total = &qso_length->Add({{"qso", "length"}}, Summary::Quantiles());
+    // qso_length = &BuildSummary()
+    //                .Name("qso_length_total")
+    //                .Help("QSO length")
+    //                .Register(*registry);
+    // qso_length_total = &qso_length->Add({{"qso", "length"}}, Summary::Quantiles());
 
 
     exposer.RegisterCollectable(registry);
