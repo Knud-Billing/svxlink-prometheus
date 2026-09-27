@@ -294,7 +294,7 @@ void QsoRecorder::openFile(void)
            << " for writing in logic " << logic->name() << ": "
            << recorder->errorMsg() << endl;
     }
-    Telemetry::getInstance().qso_start();
+    // Telemetry::getInstance().qso_start();
   }
 } /* QsoRecorder::openFile */
 

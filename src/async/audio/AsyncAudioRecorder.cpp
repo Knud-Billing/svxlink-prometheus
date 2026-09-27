@@ -48,6 +48,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ****************************************************************************/
 
 
+ #include "telemetry.h"
+
 
 /****************************************************************************
  *
@@ -236,6 +238,7 @@ int AudioRecorder::writeSamples(const float *samples, int count)
     long usec = static_cast<long>(1000000LL * count / sample_rate);
     struct timeval block_time = { 0,  usec };
     timersub(&end_timestamp, &block_time, &begin_timestamp);
+    Telemetry::getInstance().qso_start();
   }
   
   short buf[count];
