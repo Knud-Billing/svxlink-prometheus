@@ -468,9 +468,9 @@ int main(int argc, char **argv)
   {
     std::cout << "NOTICE: Initialization done. Starting main application."
               << std::endl;
-    Telemetry telemetry=Telemetry::getInstance();
+    Telemetry::getInstance();
     std::cout << "NOTICE: Starting telemetry"
-              << std:endl;
+              << std::endl;
     app.exec();
     std::cout << "NOTICE: Exiting" << std::endl;
   }
