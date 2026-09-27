@@ -126,7 +126,7 @@ if(USE_OSS)
   set(LIBSRC ${LIBSRC} AsyncAudioDeviceOSS.cpp)
 endif(USE_OSS)
 
-set(LIBS ${LIBS} asynccore)
+set(LIBS ${LIBS} asynccore telemetry)
 
 # Copy exported include files to the global include directory
 foreach(incfile ${EXPINC})
