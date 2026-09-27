@@ -28,7 +28,7 @@ if (HAS_HIDRAW_SUPPORT)
 endif (HAS_HIDRAW_SUPPORT)
 
 # Which other libraries this library depends on
-set(LIBS ${LIBS} digital)
+set(LIBS ${LIBS} digital telemetry)
 
 # Copy exported include files to the global include directory
 foreach(incfile ${EXPINC})

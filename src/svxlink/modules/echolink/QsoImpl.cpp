@@ -60,6 +60,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <EventHandler.h>
 #include <config.h>
 
+#include "telemetry.h"
 
 /****************************************************************************
  *
@@ -508,6 +509,7 @@ void QsoImpl::onStateChange(Qso::State state)
   {
     case Qso::STATE_DISCONNECTED:
       cout << "DISCONNECTED\n";
+      Telemetry::getInstance().echolink_connect();
       if (!reject_qso)
       {
       	stringstream ss;
@@ -522,6 +524,7 @@ void QsoImpl::onStateChange(Qso::State state)
       break;
     case Qso::STATE_CONNECTED:
       cout << "CONNECTED\n";
+      Telemetry::getInstance().echolink_disconnect();
       if (!reject_qso)
       {
 	if (m_qso.isRemoteInitiated())
