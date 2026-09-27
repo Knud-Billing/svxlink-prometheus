@@ -62,6 +62,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <common.h>
 #include <config.h>
 #include <LogWriter.h>
+#include "telemetry.h"
 
 
 /****************************************************************************
@@ -467,6 +468,9 @@ int main(int argc, char **argv)
   {
     std::cout << "NOTICE: Initialization done. Starting main application."
               << std::endl;
+    Telemetry telemetry=Telemetry::getInstance();
+    std::cout << "NOTICE: Starting telemetry"
+              << std:endl;
     app.exec();
     std::cout << "NOTICE: Exiting" << std::endl;
   }
