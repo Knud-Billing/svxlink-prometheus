@@ -509,7 +509,7 @@ void QsoImpl::onStateChange(Qso::State state)
   {
     case Qso::STATE_DISCONNECTED:
       cout << "DISCONNECTED\n";
-      Telemetry::getInstance().echolink_connect();
+      // Telemetry::getInstance().echolink_connect();
       if (!reject_qso)
       {
       	stringstream ss;
@@ -524,7 +524,7 @@ void QsoImpl::onStateChange(Qso::State state)
       break;
     case Qso::STATE_CONNECTED:
       cout << "CONNECTED\n";
-      Telemetry::getInstance().echolink_disconnect();
+      // Telemetry::getInstance().echolink_disconnect();
       if (!reject_qso)
       {
 	if (m_qso.isRemoteInitiated())

@@ -294,7 +294,7 @@ void QsoRecorder::openFile(void)
            << " for writing in logic " << logic->name() << ": "
            << recorder->errorMsg() << endl;
     }
-    Telemetry::getInstance().qso_start();
+    // Telemetry::getInstance().qso_start();
   }
 } /* QsoRecorder::openFile */
 
@@ -312,7 +312,7 @@ void QsoRecorder::closeFile(void)
            << endl;
     }
     
-    Telemetry::getInstance().qso_stop();
+    // Telemetry::getInstance().qso_stop();
 
     if (recorder->samplesWritten() > min_samples)
     {
