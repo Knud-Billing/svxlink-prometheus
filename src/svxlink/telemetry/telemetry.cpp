@@ -83,6 +83,20 @@ Telemetry::Telemetry()
     // qso_length_total = &qso_length->Add({{"qso", "length"}}, Summary::Quantiles());
 
 
+    squelch_counter = &BuildCounter()
+                        .Name("squelch_total")
+                        .Help("Number of squelch events")
+                        .Register(*registry);
+    squelch_open_counter = &squelch_counter->Add({{"squelch", "open"}});
+    squelch_close_counter = &squelch_counter->Add({{"squelch", "close"}});
+
+    squelch_length = &BuildSummary()
+                   .Name("squelch_length_total")
+                   .Help("Squelch active")
+                   .Register(*registry);
+    squelch_length_total = &squelch_length->Add({{"squelch", "length"}}, Summary::Quantiles());
+
+
     exposer.RegisterCollectable(registry);
 
 }

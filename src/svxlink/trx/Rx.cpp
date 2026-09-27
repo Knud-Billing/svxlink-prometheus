@@ -333,11 +333,15 @@ void Rx::setSquelchState(bool is_open, const std::string& info)
     std::cout << std::endl;
   }
 
-  // if (is_open) {
-  //   Telemetry::getInstance().squelch_open();
-  // } else {
-  //   Telemetry::getInstance().squelch_close();
-  // }
+  if (is_open) {
+    std::cout << "Telemetry squelch open" << std::endl;
+    Telemetry::getInstance().squelch_open();
+  } else {
+    std::cout << "Telemetry squelch close" << std::endl;
+    Telemetry::getInstance().squelch_close();
+  }
+  std::cout << "Telemetry done" << std::endl;
+
 
   m_sql_open = is_open;
   m_sql_info = info;
