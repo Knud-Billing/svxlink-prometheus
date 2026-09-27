@@ -27,14 +27,14 @@ Telemetry::Telemetry()
     registry = std::make_shared<Registry>();
 
     tx_counter = &BuildCounter()
-                        .Name("tx_total")
+                        .Name("svxlink_tx")
                         .Help("Number of transmissions")
                         .Register(*registry);
     tx_on_counter = &tx_counter->Add({{"transition", "on"}});
     tx_off_counter = &tx_counter->Add({{"transition", "off"}});
 
     tx_length = &BuildSummary()
-                   .Name("tx_length_total")
+                   .Name("svxlink_tx_length")
                    .Help("Transmitter active")
                    .Register(*registry);
     tx_length_total = &tx_length->Add({{"tx", "length"}}, Summary::Quantiles());
@@ -42,14 +42,14 @@ Telemetry::Telemetry()
 
 
     echolink_counter = &BuildCounter()
-                        .Name("echolink_total")
+                        .Name("svxlink_echolink")
                         .Help("Number of Echolink connections")
                         .Register(*registry);
     echolink_connect_counter = &echolink_counter->Add({{"transition", "connect"}});
     echolink_disconnect_counter = &echolink_counter->Add({{"transition", "disconnect"}});
 
     echolink_length = &BuildSummary()
-                   .Name("echolink_length_total")
+                   .Name("svxlink_echolink_length")
                    .Help("Echolink active")
                    .Register(*registry);
     echolink_length_total = &echolink_length->Add({{"echolink", "length"}}, Summary::Quantiles());
@@ -71,29 +71,29 @@ Telemetry::Telemetry()
 
 
     qso_counter = &BuildCounter()
-                        .Name("qso_total")
+                        .Name("svxlink_qso")
                         .Help("Number of QSOs")
                         .Register(*registry);
-    qso_start_counter = &qso_counter->Add({{"qso", "start"}});
-    qso_stop_counter = &qso_counter->Add({{"qso", "stop"}});
+    qso_start_counter = &qso_counter->Add({{"transition", "start"}});
+    qso_stop_counter = &qso_counter->Add({{"transition", "stop"}});
 
     qso_length = &BuildSummary()
-                   .Name("qso_length_total")
+                   .Name("svxlink_qso_length")
                    .Help("QSO length")
                    .Register(*registry);
     qso_length_total = &qso_length->Add({{"qso", "length"}}, Summary::Quantiles());
 
 
     squelch_counter = &BuildCounter()
-                        .Name("squelch_total")
+                        .Name("svxlink_squelch")
                         .Help("Number of squelch events")
                         .Register(*registry);
-    squelch_open_counter = &squelch_counter->Add({{"squelch", "open"}});
-    squelch_close_counter = &squelch_counter->Add({{"squelch", "close"}});
+    squelch_open_counter = &squelch_counter->Add({{"transition", "open"}});
+    squelch_close_counter = &squelch_counter->Add({{"transition", "close"}});
 
     squelch_length = &BuildSummary()
-                   .Name("squelch_length_total")
-                   .Help("Squelch active")
+                   .Name("svxlink_squelch_length")
+                   .Help("Squelch length")
                    .Register(*registry);
     squelch_length_total = &squelch_length->Add({{"squelch", "length"}}, Summary::Quantiles());
 
