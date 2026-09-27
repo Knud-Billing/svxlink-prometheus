@@ -55,6 +55,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <AsyncConfig.h>
 #include <AsyncTimer.h>
 #include <AsyncExec.h>
+#include "telemetry.h"
 
 
 /****************************************************************************
@@ -293,6 +294,7 @@ void QsoRecorder::openFile(void)
            << " for writing in logic " << logic->name() << ": "
            << recorder->errorMsg() << endl;
     }
+    Telemetry::getInstance().qso_start();
   }
 } /* QsoRecorder::openFile */
 
@@ -309,6 +311,8 @@ void QsoRecorder::closeFile(void)
            << "\" in logic " << logic->name() << ": " << recorder->errorMsg()
            << endl;
     }
+    
+    Telemetry::getInstance().qso_stop();
 
     if (recorder->samplesWritten() > min_samples)
     {

@@ -44,6 +44,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  ****************************************************************************/
 
+#include "telemetry.h"
 
 
 /****************************************************************************
@@ -243,6 +244,12 @@ void Tx::setIsTransmitting(bool is_transmitting)
     }
     m_is_transmitting = is_transmitting;
     transmitterStateChange(is_transmitting);
+
+    if (is_transmitting) {
+      Telemetry::getInstance().tx_on();
+    } else {
+      Telemetry::getInstance().tx_off();
+    }
 
     char tx_id = id();
     if (tx_id != '\0')

@@ -45,6 +45,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <AsyncTimer.h>
 #include <AsyncConfig.h>
+#include "telemetry.h"
 
 
 /****************************************************************************
@@ -331,6 +332,13 @@ void Rx::setSquelchState(bool is_open, const std::string& info)
     }
     std::cout << std::endl;
   }
+
+  if (is_open) {
+    Telemetry::getInstance().squelch_open();
+  } else {
+    Telemetry::getInstance().squelch_close();
+  }
+
   m_sql_open = is_open;
   m_sql_info = info;
   squelchOpen(is_open);

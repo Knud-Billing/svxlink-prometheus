@@ -196,7 +196,7 @@ void LogWriter::stop(void)
 
   if (m_pipefd[1] != -1)
   {
-    write(m_pipefd[1], "\0", 1);
+    (void)!write(m_pipefd[1], "\0", 1);
     close(m_pipefd[1]);
     m_pipefd[1] = -1;
   }
